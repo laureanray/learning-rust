@@ -59,6 +59,25 @@ where
     todo!();
 }
 
+
+// This doesn't compile
+// fn returns_summarizable(switch: bool) -> impl Summary {
+//     if switch {
+//         Tweet {
+//             username: String::from("@laureanray"),
+//             content: String::from("Hello Werld!"),
+//             retweet: false,
+//             reply: false,
+//         }
+//     } else {
+//         NewsArticle {
+//             headline: String::from("headline"),
+//             location: String::from("mindoro"),
+//             author: String::from("lr"),
+//             content: String::from("news"),
+//         }
+//     }
+// }
 #[cfg(test)]
 mod tests {
     use super::*;
