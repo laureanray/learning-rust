@@ -1,3 +1,5 @@
+use std::fmt::{Debug, Display};
+
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
@@ -20,9 +22,7 @@ impl Summary for NewsArticle {
     fn summarize_author(&self) -> String {
         String::from("test")
     }
-
 }
-
 
 pub struct Tweet {
     pub username: String,
@@ -37,13 +37,41 @@ impl Summary for Tweet {
     }
 }
 
+impl Display for Tweet {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        todo!();
+    }
+}
+
+pub fn notify<T: Summary + Display>(item: &T) {
+    println!("Breaking news! {}", item.summarize())
+}
+
+fn some_fn<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
+    todo!();
+}
+
+fn some_fn1<T, U>(t: &T, u: &U) -> i32
+where
+    T: Display + Clone,
+    U: Display + Debug,
+{
+    todo!();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let tweet = Tweet {
+            content: String::from("Hello World!"),
+            username: String::from("@laureanray"),
+            reply: false,
+            retweet: false,
+        };
+
+        notify(&tweet);
     }
 }
