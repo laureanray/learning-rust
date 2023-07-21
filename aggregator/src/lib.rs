@@ -186,9 +186,15 @@ mod tests {
         };
 
         let pair = Pair { 
-            x: tweet1,
-            y: tweet2,
+            x: &tweet1,
+            y: &tweet2,
         };
+
+        let str = String::from("the other side");
+
+        str.to_string();
+
+        tweet1.to_string();
 
         pair.cmp_display();
     }
